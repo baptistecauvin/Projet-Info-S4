@@ -190,11 +190,12 @@ void Graph::make_example()
 
 */
 
+///CHARGEMENT FICHIER
     std::string name;
  int id=0;
  int verx,very;
  int nb_sommet;
- int s1=0,s2=0;
+ //int s1=0,s2=0;
  int poids,value;
 
 std::ifstream fichier("Graphe-1.txt",std::ios::in);
@@ -212,9 +213,9 @@ if(fichier)
     add_interfaced_vertex(i,value,verx,very, name+".pnj");
      }
 
-     for(unsigned int s1;s1<nb_sommet; s1++)
+     for(unsigned int s1=0;s1<nb_sommet; s1++)
 {
-    for(unsigned int s2;s2<nb_sommet;s2++)
+    for(unsigned int s2=0;s2<nb_sommet;s2++)
     {
         fichier >> poids;
         if(poids!=0)
