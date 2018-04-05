@@ -92,7 +92,7 @@ class VertexInterface
 
 private :
 
-    /// Les widgets de l'interface. N'oubliez pas qu'il ne suffit pas de déclarer
+    /// Les widgets de  l'interface. N'oubliez pas qu'il ne suffit pas de déclarer
     /// ici un widget pour qu'il apparaisse, il faut aussi le mettre en place et
     /// le paramétrer ( voir l'implémentation du constructeur dans le .cpp )
 
