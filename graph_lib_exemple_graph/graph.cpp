@@ -152,7 +152,7 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_main_box.set_bg_color(BLANCJAUNE);
 }
 
-Graph::Graph(int x,int nb, int p, int val, int vx, int vy)
+Graph::Graph(int x,unsigned int nb, int p, int val, int vx, int vy)
 {
     x=id;
     nb=nb_sommet;
@@ -207,7 +207,7 @@ void Graph::make_example()
     {
         fichier>> nb_sommet;
 
-        for (int i=0 ; i<nb_sommet; i++ )
+        for (unsigned int i=0 ; i<nb_sommet; i++ )
         {
             fichier>>name;
             fichier >>value;
@@ -227,16 +227,13 @@ void Graph::make_example()
                     add_interfaced_edge(id,s1,s2,poids);
                     id++;
                 }
-
             }
         }
     }
-
     else
         std::cout<< "impossible d'ouvrir le fichier" ;
 
 }
-
 
 
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface

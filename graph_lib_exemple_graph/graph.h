@@ -290,7 +290,8 @@ private :
 
     std::string name;
     int id=0;
-    int nb_sommet, poids, value, verx, very;
+    unsigned int nb_sommet;
+    int poids, value, verx, very;
 
 
 public:
@@ -300,7 +301,7 @@ public:
     Graph (GraphInterface *interface=nullptr) :
         m_interface(interface)  {  }
 
-        Graph(int x,int nb, int p, int val, int vx, int vy);
+    Graph(int x,unsigned int nb, int p, int val, int vx, int vy);
 
     void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
     void add_interfaced_edge(int idx, int vert1, int vert2, double weight=0);
