@@ -16,7 +16,7 @@ VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, in
 
     // Le slider de réglage de valeur
     m_top_box.add_child( m_slider_value );
-    m_slider_value.set_range(0.0 , 100.0); // Valeurs arbitraires, à adapter...
+    m_slider_value.set_range(0.0, 100.0);  // Valeurs arbitraires, à adapter...
     m_slider_value.set_dim(20,80);
     m_slider_value.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
 
@@ -94,7 +94,7 @@ EdgeInterface::EdgeInterface(Vertex& from, Vertex& to)
 
     // Le slider de réglage de valeur
     m_box_edge.add_child( m_slider_weight );
-    m_slider_weight.set_range(0.0 , 100.0); // Valeurs arbitraires, à adapter...
+    m_slider_weight.set_range(0.0, 100.0);  // Valeurs arbitraires, à adapter...
     m_slider_weight.set_dim(16,40);
     m_slider_weight.set_gravity_y(grman::GravityY::Up);
 
@@ -152,6 +152,16 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_main_box.set_bg_color(BLANCJAUNE);
 }
 
+Graph::Graph(int x,int nb, int p, int val, int vx, int vy)
+{
+    x=id;
+    nb=nb_sommet;
+    p=poids;
+    val=value;
+    vx=verx;
+    vy=very;
+}
+
 
 /// Méthode spéciale qui construit un graphe arbitraire (démo)
 /// Cette méthode est à enlever et remplacer par un système
@@ -166,73 +176,64 @@ void Graph::make_example()
 
     /// Les sommets doivent être définis avant les arcs
     // Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
-   /* add_interfaced_vertex(0, 30.0, 200, 100, "clown1.jpg");
-    add_interfaced_vertex(1, 60.0, 400, 100, "clown2.jpg");
-    add_interfaced_vertex(2,  50.0, 200, 300, "clown3.jpg");
-    add_interfaced_vertex(3,  0.0, 400, 300, "clown4.jpg");
-    add_interfaced_vertex(4,  100.0, 600, 300, "clown5.jpg");
-    add_interfaced_vertex(5,  0.0, 100, 500, "bad_clowns_xx3xx.jpg", 0);
-    add_interfaced_vertex(6,  0.0, 300, 500, "bad_clowns_xx3xx.jpg", 1);
-    add_interfaced_vertex(7,  0.0, 500, 500, "bad_clowns_xx3xx.jpg", 2);
+    /* add_interfaced_vertex(0, 30.0, 200, 100, "clown1.jpg");
+     add_interfaced_vertex(1, 60.0, 400, 100, "clown2.jpg");
+     add_interfaced_vertex(2,  50.0, 200, 300, "clown3.jpg");
+     add_interfaced_vertex(3,  0.0, 400, 300, "clown4.jpg");
+     add_interfaced_vertex(4,  100.0, 600, 300, "clown5.jpg");
+     add_interfaced_vertex(5,  0.0, 100, 500, "bad_clowns_xx3xx.jpg", 0);
+     add_interfaced_vertex(6,  0.0, 300, 500, "bad_clowns_xx3xx.jpg", 1);
+     add_interfaced_vertex(7,  0.0, 500, 500, "bad_clowns_xx3xx.jpg", 2);
 
-    /// Les arcs doivent être définis entre des sommets qui existent !
-    // AJouter l'arc d'indice 0, allant du sommet 1 au sommet 2 de poids 50 etc...
-    add_interfaced_edge(0, 1, 2, 50.0);
-    add_interfaced_edge(1, 0, 1, 50.0);
-    add_interfaced_edge(2, 1, 3, 75.0);
-    add_interfaced_edge(3, 4, 1, 25.0);
-    add_interfaced_edge(4, 6, 3, 25.0);
-    add_interfaced_edge(5, 7, 3, 25.0);
-    add_interfaced_edge(6, 3, 4, 0.0);
-    add_interfaced_edge(7, 2, 0, 100.0);
-    add_interfaced_edge(8, 5, 2, 20.0);
-    add_interfaced_edge(9, 3, 7, 80.0);
+     /// Les arcs doivent être définis entre des sommets qui existent !
+     // AJouter l'arc d'indice 0, allant du sommet 1 au sommet 2 de poids 50 etc...
+     add_interfaced_edge(0, 1, 2, 50.0);
+     add_interfaced_edge(1, 0, 1, 50.0);
+     add_interfaced_edge(2, 1, 3, 75.0);
+     add_interfaced_edge(3, 4, 1, 25.0);
+     add_interfaced_edge(4, 6, 3, 25.0);
+     add_interfaced_edge(5, 7, 3, 25.0);
+     add_interfaced_edge(6, 3, 4, 0.0);
+     add_interfaced_edge(7, 2, 0, 100.0);
+     add_interfaced_edge(8, 5, 2, 20.0);
+     add_interfaced_edge(9, 3, 7, 80.0);
 
-*/
+    */
 
 ///CHARGEMENT FICHIER
-    std::string name;
- int id=0;
- int verx,very;
- int nb_sommet;
- //int s1=0,s2=0;
- int poids,value;
+    std::ifstream fichier("Graphe-1.txt",std::ios::in);
 
-std::ifstream fichier("Graphe-1.txt",std::ios::in);
-
-if(fichier)
-{
-    fichier>> nb_sommet;
-
-     for (int i=0 ; i<nb_sommet;i++ )
-     {
-     fichier>>name;
-     fichier >>value;
-     fichier >>verx;
-     fichier>>very;
-    add_interfaced_vertex(i,value,verx,very, name+".pnj");
-     }
-
-     for(unsigned int s1=0;s1<nb_sommet; s1++)
-{
-    for(unsigned int s2=0;s2<nb_sommet;s2++)
+    if(fichier)
     {
-        fichier >> poids;
-        if(poids!=0)
-        {
+        fichier>> nb_sommet;
 
-            add_interfaced_edge(id,s1,s2,poids);
-            id++;
+        for (int i=0 ; i<nb_sommet; i++ )
+        {
+            fichier>>name;
+            fichier >>value;
+            fichier >>verx;
+            fichier>>very;
+            add_interfaced_vertex(i,value,verx,very, name+".pnj");
         }
 
+        for(unsigned int s1=0; s1<nb_sommet; s1++)
+        {
+            for(unsigned int s2=0; s2<nb_sommet; s2++)
+            {
+                fichier >> poids;
+                if(poids!=0)
+                {
+
+                    add_interfaced_edge(id,s1,s2,poids);
+                    id++;
+                }
+
+            }
+        }
     }
-}
-}
 
-else
-    std::cout<< "impossible d'ouvrir le fichier" ;
-
-
+    else
+        std::cout<< "impossible d'ouvrir le fichier" ;
 
 }
 
