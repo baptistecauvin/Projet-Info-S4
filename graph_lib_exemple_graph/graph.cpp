@@ -6,9 +6,8 @@
                     VERTEX
 ****************************************************/
 
-using namespace std;
 /// Le constructeur met en place les éléments de l'interface
-VertexInterface::VertexInterface(int idx, int x, int y, string pic_name, int pic_idx)
+VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, int pic_idx)
 {
     // La boite englobante
     m_top_box.set_pos(x, y);
@@ -41,7 +40,7 @@ VertexInterface::VertexInterface(int idx, int x, int y, string pic_name, int pic
     m_box_label_idx.set_bg_color(BLANC);
 
     m_box_label_idx.add_child( m_label_idx );
-    m_label_idx.set_message( to_string(idx) );
+    m_label_idx.set_message( std::to_string(idx) );
 }
 
 
@@ -55,7 +54,7 @@ void Vertex::pre_update()
     m_interface->m_slider_value.set_value(m_value);
 
     /// Copier la valeur locale de la donnée m_value vers le label sous le slider
-    m_interface->m_label_value.set_message( to_string( (int)m_value) );
+    m_interface->m_label_value.set_message( std::to_string( (int)m_value) );
 }
 
 
@@ -81,7 +80,7 @@ EdgeInterface::EdgeInterface(Vertex& from, Vertex& to)
     // Le WidgetEdge de l'interface de l'arc
     if ( !(from.m_interface && to.m_interface) )
     {
-        cerr << "Error creating EdgeInterface between vertices having no interface" << endl;
+        std::cerr << "Error creating EdgeInterface between vertices having no interface" << std::endl;
         throw "Bad EdgeInterface instanciation";
     }
     m_top_edge.attach_from(from.m_interface->m_top_box);
@@ -171,14 +170,42 @@ Graph::Graph(int x,int t,unsigned int nb,int p,int val,int vx,int vy)
 void Graph::make_example()
 {
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
+    // La ligne précédente est en gros équivalente à :
+    // m_interface = new GraphInterface(50, 0, 750, 600);
 
     /// Les sommets doivent être définis avant les arcs
+    // Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
+    /* add_interfaced_vertex(0, 30.0, 200, 100, "clown1.jpg");
+     add_interfaced_vertex(1, 60.0, 400, 100, "clown2.jpg");
+     add_interfaced_vertex(2,  50.0, 200, 300, "clown3.jpg");
+     add_interfaced_vertex(3,  0.0, 400, 300, "clown4.jpg");
+     add_interfaced_vertex(4,  100.0, 600, 300, "clown5.jpg");
+     add_interfaced_vertex(5,  0.0, 100, 500, "bad_clowns_xx3xx.jpg", 0);
+     add_interfaced_vertex(6,  0.0, 300, 500, "bad_clowns_xx3xx.jpg", 1);
+     add_interfaced_vertex(7,  0.0, 500, 500, "bad_clowns_xx3xx.jpg", 2);
+
+     /// Les arcs doivent être définis entre des sommets qui existent !
+     // AJouter l'arc d'indice 0, allant du sommet 1 au sommet 2 de poids 50 etc...
+     add_interfaced_edge(0, 1, 2, 50.0);
+     add_interfaced_edge(1, 0, 1, 50.0);
+     add_interfaced_edge(2, 1, 3, 75.0);
+     add_interfaced_edge(3, 4, 1, 25.0);
+     add_interfaced_edge(4, 6, 3, 25.0);
+     add_interfaced_edge(5, 7, 3, 25.0);
+     add_interfaced_edge(6, 3, 4, 0.0);
+     add_interfaced_edge(7, 2, 0, 100.0);
+     add_interfaced_edge(8, 5, 2, 20.0);
+     add_interfaced_edge(9, 3, 7, 80.0);
+
+    */
+
 
     std::ifstream fichier("Graphe-1.txt",std::ios::in);
 
     if(fichier)
     {
         fichier>> nb_sommet;
+        fichier>> nb_arrete;
 
         for (int i=0 ; i<nb_sommet; i++ )
         {
@@ -190,41 +217,50 @@ void Graph::make_example()
             add_interfaced_vertex(i,value,verx,very, name);
         }
 
-        for(unsigned int s1=0; s1<nb_sommet; s1++)
+        for(int j=0; j<nb_arrete; j++)
         {
-            for(unsigned int s2=0; s2<nb_sommet; s2++)
-            {
-                fichier >> poids;
-                if(poids!=0)
-                {
-                    add_interfaced_edge(id,s1,s2,poids);
-                    id++;
-                }
-
-            }
+            fichier >>tmp;
+            fichier >> s1;
+            fichier >> s2;
+            fichier >> poids;
+            add_interfaced_edge(j,s1,s2,poids);
         }
-        fichier.close();
+     fichier.close();
     }
 
-    else
-        std::cout<< "impossible d'ouvrir le fichier" ;
+
+    else std::cout<< "impossible d'ouvrir le fichier" ;
 
 }
+
 
 void Graph::sauvegarder()
 {
 
     std::ofstream fichier("Graphe-1.txt",std::ios::out);
-    fichier << nb_sommet<< std::endl;
+    fichier << nb_sommet<<std::endl;
+    fichier << nb_arrete<<std::endl;
     for(auto it=m_vertices.begin(); it!=m_vertices.end(); ++it)
     {
         fichier << it->first<< " " ;
+
         fichier << it->second.m_value<<" ";
         fichier << it->second.m_interface->m_top_box.get_posx()<<" ";
         fichier << it->second.m_interface->m_top_box.get_posy()<<" ";
         fichier << it->second.m_interface->m_img.get_pic_name()<<std::endl;
+
+
     }
-    fichier.close();
+
+    for( int i=0; i<nb_arrete;i++)
+    {
+        fichier <<i<<" ";
+        fichier << m_edges[i].m_from<<" ";
+        fichier << m_edges[i].m_to<< " ";
+        fichier << m_edges[i].m_weight<<std::endl;
+    }
+
+  fichier.close();
 }
 
 

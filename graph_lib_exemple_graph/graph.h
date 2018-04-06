@@ -93,7 +93,7 @@ class VertexInterface
 
 private :
 
-    /// Les widgets de  l'interface. N'oubliez pas qu'il ne suffit pas de déclarer
+    /// Les widgets de l'interface. N'oubliez pas qu'il ne suffit pas de déclarer
     /// ici un widget pour qu'il apparaisse, il faut aussi le mettre en place et
     /// le paramétrer ( voir l'implémentation du constructeur dans le .cpp )
 
@@ -292,8 +292,11 @@ private :
     std::string name;
     int tmp;
     int id=0;
-    int verx,very, value;
-    int poids;
+    int s1,s2;
+    int verx,very;
+    unsigned int nb_sommet;
+     unsigned int nb_arrete;
+    int poids,value;
 public:
 
     /// Les constructeurs sont à compléter selon vos besoin...
@@ -309,9 +312,6 @@ public:
     /// Cette méthode est à enlever et remplacer par un système
     /// de chargement de fichiers par exemple.
     void make_example();
-    int **m_mat;
-    unsigned int nb_sommet;
-    void creer_mat(int sommet);
 
     int get_posx();
     int get_posy();
