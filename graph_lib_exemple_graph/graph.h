@@ -292,11 +292,8 @@ private :
     std::string name;
     int tmp;
     int id=0;
-    int verx,very;
-
-
-
-    int poids,value;
+    int verx,very, value;
+    int poids;
 public:
 
     /// Les constructeurs sont à compléter selon vos besoin...
