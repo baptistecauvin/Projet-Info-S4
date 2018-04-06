@@ -1,14 +1,15 @@
 # depslib dependency file v1.0
-1522877296 source:c:\users\paulr\onedrive\documents\graph_lib_exemple_graph\graph.cpp
+1522945911 source:c:\users\paulr\onedrive\documents\graph_lib_exemple_graph\graph.cpp
 	"graph.h"
 	<fstream>
 	<iostream>
 
-1522656089 c:\users\paulr\onedrive\documents\graph_lib_exemple_graph\graph.h
+1522945665 c:\users\paulr\onedrive\documents\graph_lib_exemple_graph\graph.h
 	<vector>
 	<map>
 	<string>
 	<memory>
+	"grman/widget.h"
 	"grman/grman.h"
 
 1522539041 c:\users\paulr\onedrive\documents\graph_lib_exemple_graph\grman\grman.h
@@ -23,7 +24,7 @@
 1522575424 c:\users\paulr\onedrive\documents\graph_lib_exemple_graph\grman\coords.h
 	<cmath>
 
-1522636616 c:\users\paulr\onedrive\documents\graph_lib_exemple_graph\grman\widget.h
+1522942051 c:\users\paulr\onedrive\documents\graph_lib_exemple_graph\grman\widget.h
 	"grman.h"
 	<iostream>
 	<string>
@@ -48,24 +49,27 @@
 	<loadpng.h>
 	<jpgalleg.h>
 
-1522636919 source:c:\users\paulr\onedrive\documents\graph_lib_exemple_graph\grman\widget.cpp
+1522942051 source:c:\users\paulr\onedrive\documents\graph_lib_exemple_graph\grman\widget.cpp
 	"widget.h"
 
-1522657075 source:c:\users\paulr\onedrive\documents\graph_lib_exemple_graph\main.cpp
+1522942051 D
+
+1522942107 source:c:\users\paulr\onedrive\documents\graph_lib_exemple_graph\main.cpp
 	"grman/grman.h"
 	<iostream>
 	"graph.h"
 
-1522927463 source:c:\users\bcauv\projet-info-s4\graph_lib_exemple_graph\graph.cpp
+1522947401 source:c:\users\bcauv\projet-info-s4\graph_lib_exemple_graph\graph.cpp
 	"graph.h"
 	<fstream>
 	<iostream>
 
-1522947071 c:\users\bcauv\projet-info-s4\graph_lib_exemple_graph\graph.h
+1522947401 c:\users\bcauv\projet-info-s4\graph_lib_exemple_graph\graph.h
 	<vector>
 	<map>
 	<string>
 	<memory>
+	"grman/widget.h"
 	"grman/grman.h"
 
 1522921451 c:\users\bcauv\projet-info-s4\graph_lib_exemple_graph\grman\grman.h
@@ -80,7 +84,7 @@
 1522921451 c:\users\bcauv\projet-info-s4\graph_lib_exemple_graph\grman\coords.h
 	<cmath>
 
-1522947071 c:\users\bcauv\projet-info-s4\graph_lib_exemple_graph\grman\widget.h
+1522947401 c:\users\bcauv\projet-info-s4\graph_lib_exemple_graph\grman\widget.h
 	"grman.h"
 	<iostream>
 	<string>
@@ -105,10 +109,15 @@
 	<loadpng.h>
 	<jpgalleg.h>
 
-1522921451 source:c:\users\bcauv\projet-info-s4\graph_lib_exemple_graph\grman\widget.cpp
+1522947401 source:c:\users\bcauv\projet-info-s4\graph_lib_exemple_graph\grman\widget.cpp
 	"widget.h"
 
-1522921451 source:c:\users\bcauv\projet-info-s4\graph_lib_exemple_graph\main.cpp
+1522947401 source:c:\users\bcauv\projet-info-s4\graph_lib_exemple_graph\main.cpp
+	"grman/grman.h"
+	<iostream>
+	"graph.h"
+
+1522942107 a8ea7cde805037a5f0bc02f466bb1c874f288
 	"grman/grman.h"
 	<iostream>
 	"graph.h"

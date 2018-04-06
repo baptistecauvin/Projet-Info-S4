@@ -75,6 +75,7 @@
 #include <map>
 #include <string>
 #include <memory>
+#include "grman/widget.h"
 
 #include "grman/grman.h"
 
@@ -289,20 +290,20 @@ private :
     std::shared_ptr<GraphInterface> m_interface = nullptr;
 
     std::string name;
+    int tmp;
     int id=0;
-    unsigned int nb_sommet;
-    int poids, value, verx, very;
+    int verx,very;
 
 
+
+    int poids,value;
 public:
 
     /// Les constructeurs sont à compléter selon vos besoin...
     /// Ici on ne donne qu'un seul constructeur qui peut utiliser une interface
     Graph (GraphInterface *interface=nullptr) :
         m_interface(interface)  {  }
-
-    Graph(int x,unsigned int nb, int p, int val, int vx, int vy);
-
+     Graph(int x,int t,unsigned int nb ,int p,int val,int vx,int vy);
     void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
     void add_interfaced_edge(int idx, int vert1, int vert2, double weight=0);
 
@@ -311,8 +312,14 @@ public:
     /// Cette méthode est à enlever et remplacer par un système
     /// de chargement de fichiers par exemple.
     void make_example();
+    int **m_mat;
+    unsigned int nb_sommet;
+    void creer_mat(int sommet);
 
+    int get_posx();
+    int get_posy();
 
+    void sauvegarder();
     /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
     void update();
 };
